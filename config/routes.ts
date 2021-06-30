@@ -1,16 +1,9 @@
-﻿export default [
-  {
-    name: 'list.table-list',
-    icon: 'table',
-    path: '/list',
-    component: './TableList',
-  },
-  {
-    name: 'list.amisTable-list',
-    icon: 'table',
-    path: '/amis-list',
-    component: './AmisTableList',
-  },
+﻿import SpRoutes from './spRoutes';
+import ConsoleRoutes from './consoleRoutes';
+
+export default [
+  ...SpRoutes,
+  ...ConsoleRoutes,
   {
     component: './404',
   },
