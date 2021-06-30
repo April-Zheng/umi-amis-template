@@ -55,3 +55,7 @@ npm test
 ## More
 
 You can view full document on our [official website](https://pro.ant.design). And welcome any feedback in our [github](https://github.com/ant-design/ant-design-pro).
+
+## umi 支持作为自应用插入
+
+参考：https://segmentfault.com/a/1190000021821200
