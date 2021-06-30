@@ -6,6 +6,12 @@
     component: './TableList',
   },
   {
+    name: 'list.amisTable-list',
+    icon: 'table',
+    path: '/amis-list',
+    component: './AmisTableList',
+  },
+  {
     component: './404',
   },
 ];

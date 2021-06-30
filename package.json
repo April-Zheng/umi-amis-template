@@ -53,6 +53,7 @@
     "@ant-design/pro-table": "^2.30.8",
     "@umijs/plugin-qiankun": "^2.25.2",
     "@umijs/route-utils": "^1.0.36",
+    "amis": "^1.2.0-beta.3",
     "antd": "^4.14.0",
     "classnames": "^2.2.6",
     "lodash": "^4.17.11",

@@ -3,6 +3,7 @@ import { PageLoading } from '@ant-design/pro-layout';
 import { notification } from 'antd';
 import type { RequestConfig, RunTimeLayoutConfig } from 'umi';
 import { history } from 'umi';
+import 'amis/lib/themes/default.css';
 import { queryCurrentUser } from '@/services/account';
 import PackageJson from '../package.json';
 import type { IUserInfo } from './types/type';
