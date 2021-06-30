@@ -95,8 +95,8 @@ const Login: React.FC = () => {
         <div className={styles.top}>
           <div className={styles.header}>
             <Link to="/">
-              <img alt="logo" className={styles.logo} src="/logo.svg" />
-              <span className={styles.title}>Ant Design</span>
+              <img alt="logo" className={styles.logo} src="http://integration.wedev.cool/weedfile/csp/RHRAgbAymqWjorLZZlMFCYEkPadzjKdh" />
+              <span className={styles.title}>beplant</span>
             </Link>
           </div>
           <div className={styles.desc}>
