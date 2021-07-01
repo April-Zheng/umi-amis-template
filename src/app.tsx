@@ -16,7 +16,8 @@ export function modifyClientRenderOpts(memo: any) {
     ...memo,
     // @ts-ignore
     // eslint-disable-next-line no-underscore-dangle
-    rootElement: window.__POWERED_BY_QIANKUN__ ? PackageJson.name : memo.rootElement,
+    rootElement: window.__POWERED_BY_QIANKUN__ ? 'mircoContainer' : memo.rootElement,
+    // rootElement: window.__POWERED_BY_QIANKUN__ ? PackageJson.name : memo.rootElement,
   };
 }
 

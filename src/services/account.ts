@@ -1,4 +1,4 @@
-import { request } from 'umi';
+import { request } from './request';
 import type { IAccount } from '@/types/type';
 
 /** 获取当前的用户 GET /api/currentUser */
