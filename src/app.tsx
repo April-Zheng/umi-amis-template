@@ -5,8 +5,9 @@ import type { RequestConfig, RunTimeLayoutConfig } from 'umi';
 import { history } from 'umi';
 import 'amis/lib/themes/default.css';
 import { queryCurrentUser } from '@/services/account';
+import type { IAccount, IMasterState } from '@/types/type';
+import { setMasterStateConfig } from '@/utils/storage';
 import PackageJson from '../package.json';
-import type { IUserInfo } from './types/type';
 
 const loginPath = '/user/login';
 
@@ -29,8 +30,8 @@ export const initialStateConfig = {
  * */
 export async function getInitialState(): Promise<{
   settings?: Partial<LayoutSettings>;
-  currentUser?: IUserInfo;
-  fetchUserInfo?: () => Promise<IUserInfo | undefined>;
+  currentUser?: IAccount;
+  fetchUserInfo?: () => Promise<IAccount | undefined>;
 }> {
   const fetchUserInfo = async () => {
     try {
@@ -103,14 +104,19 @@ export const layout: RunTimeLayoutConfig = ({ initialState }) => {
 export const qiankun = {
   // 应用加载之前
   async bootstrap(props: any) {
-    console.log('app1 bootstrap', props);
+    console.log(`${PackageJson.name} bootstrap`, props);
   },
   // 应用 render 之前触发
   async mount(props: any) {
-    console.log('app1 mount', props);
+    console.log(`${PackageJson.name} mount`, props);
+    props.onGlobalStateChange((state: IMasterState, prevState: IMasterState) => {
+      console.log('通信状态发生改变：', state, prevState);
+      // eslint-disable-next-line no-underscore-dangle
+      setMasterStateConfig(state._CONSOLE_);
+    }, true);
   },
   // 应用卸载之后触发
   async unmount(props: any) {
-    console.log('app1 unmount', props);
+    console.log(`${PackageJson.name} unmount`, props);
   },
 };

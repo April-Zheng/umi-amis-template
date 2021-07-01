@@ -5,4 +5,7 @@ module.exports = {
     page: true,
     REACT_APP_ENV: true,
   },
+  rules: {
+    "no-console": 0, // 禁止使用console
+  }
 };

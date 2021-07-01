@@ -2,7 +2,7 @@ import type { StrategyEnum } from '@/types/enum';
 /**
  * 账号信息
  */
-export interface IUserInfo {
+export interface IAccount {
   /** 新账号体系ID（值类型同原UserID或CorpID），主键 */
   AccountId: string;
   /** 租户ID，暂无展示位置 */
@@ -50,4 +50,38 @@ export interface IUserInfo {
   /** 微信昵称 */
   WxNickName: string;
   CorpName?: string;
+}
+export interface IConfig {
+  /** 协议 */
+  protocol: string;
+  /** 域名 */
+  root_domain: string;
+  /** sp 域名 */
+  sp_host: string;
+  /** passport 域名 */
+  passport_host: string;
+  /** 门户 域名 */
+  www_host: string;
+  /** console 域名 */
+  console_host: string;
+  /** 客户经理 域名 */
+  customer_host: string;
+  [name: string]: any;
+}
+
+export interface IMasterStateConfig {
+  /** 账号信息 */
+  account: IAccount;
+  /** 局点 */
+  area: string;
+  /** 其他配置信息 */
+  config: IConfig;
+  /** 客户经理信息 */
+  manager?: any;
+  /** 平台 */
+  platform: string;
+}
+
+export interface IMasterState {
+  _CONSOLE_: IMasterStateConfig;
 }
