@@ -5,10 +5,12 @@ import { join } from 'path';
 import defaultSettings from './defaultSettings';
 import proxy from './proxy';
 import routes from './routes';
+import PackageJson from '../package.json';
 
 const { REACT_APP_ENV } = process.env;
 
 export default defineConfig({
+  base:PackageJson.name,
   qiankun: {
     slave: {},
   },
