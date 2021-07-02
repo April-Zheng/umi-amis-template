@@ -1,6 +1,12 @@
 const basicUrl = '/console';
 const routes = [
   {
+    name: 'console.account',
+    icon: 'UserOutlined',
+    path: '/account',
+    component: './console/AccountInfo',
+  },
+  {
     name: 'console.list.table-list',
     icon: 'table',
     path: '/list',

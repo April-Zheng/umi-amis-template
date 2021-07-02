@@ -1,4 +1,11 @@
 import type { StrategyEnum } from '@/types/enum';
+import type { AccountTypeEnum } from '@/types/enum';
+
+export interface IBasicResponse {
+  Code: number;
+  Msg: string;
+}
+
 /**
  * 账号信息
  */
@@ -10,7 +17,7 @@ export interface IAccount {
   /** 用户昵称 */
   NickName: string;
   /** 账号类型，1:主账户 2:子账户 */
-  Type: number;
+  Type: AccountTypeEnum;
   /** 用户角色, 0:普通用户 1:CP服务商 10:SP运营商 */
   Role: number;
   /** 用户策略，0:游客 10:个人认证用户 20:企业管理员 21:企业员工 */
@@ -71,9 +78,9 @@ export interface IConfig {
 
 export interface IMasterStateConfig {
   /** 账号信息 */
-  account: IAccount;
+  account: IAccount | null;
   /** 局点 */
-  area: string;
+  area: string | undefined;
   /** 其他配置信息 */
   config: IConfig;
   /** 客户经理信息 */
@@ -85,3 +92,15 @@ export interface IMasterStateConfig {
 export interface IMasterState {
   _CONSOLE_: IMasterStateConfig;
 }
+
+export interface IAccountResponse extends IBasicResponse {
+  Account: IAccount;
+  Manager?: any;
+}
+
+/* 局点配置返回体 */
+export interface IAreaConfigResponse extends IBasicResponse {
+  area: string;
+}
+
+export interface IGlobalConfigResponse extends IBasicResponse, IConfig {}

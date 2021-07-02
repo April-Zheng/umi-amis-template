@@ -5,7 +5,11 @@
  * For details, please see
  * https://pro.ant.design/docs/deploy
  */
-const proxyhost = 'http://console.test.beplant.digibms.com'
+const proxyhost =  `http://sp.test.beplant.digibms.com`;
+// const proxyhost =  `http://cosnole.test.beplant.digibms.com`;
+const cosProxy = 'http://imgcache.t1.t-beplant.bmdigitech.com';
+const sp_access_token = 'OGIXMMZJNTQTZGYWZC0ZYTQ1LTG3NTITZDA1N2I4MTE3ZMI2';
+
 export default {
   dev: {
     '/api/': {
@@ -18,7 +22,15 @@ export default {
       changeOrigin: true,
       pathRewrite: { '^': '' },
       headers: {
-        Cookie: "access_token=Y2U4YZVJNWETMZI2MS0ZOGJILWJIYTUTZTE4ZTM4ZDU2OTU3"
+        Cookie: `sp_access_token=${sp_access_token}`,
+      },
+    },
+    '/customize': {
+      target: cosProxy,
+      changeOrigin: true,
+      pathRewrite: { '^': '' },
+      headers: {
+        Cookie: `sp_access_token=${sp_access_token}`,
       },
     },
   },

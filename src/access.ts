@@ -1,9 +1,12 @@
+import type { IAccountResponse } from "@/types/type";
+import { StrategyEnum } from "@/types/enum";
+
 /**
  * @see https://umijs.org/zh-CN/plugins/plugin-access
  * */
-export default function access(initialState: { currentUser?: API.CurrentUser | undefined }) {
+export default function access(initialState: { currentUser?: IAccountResponse | undefined }) {
   const { currentUser } = initialState || {};
   return {
-    canAdmin: currentUser && currentUser.access === 'admin',
+    canAdmin: currentUser && currentUser?.Account?.Role !== StrategyEnum.VISITOR,
   };
 }

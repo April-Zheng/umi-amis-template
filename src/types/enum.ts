@@ -9,3 +9,16 @@ export enum StrategyEnum {
   SUB_EMPOLYEE = 21,
 }
 
+export enum AccountTypeEnum {
+  /** 账号类型，1:主账户 2:子账户 */
+  Master = 1,
+  Slave = 2,
+}
+
+export enum AccountAuthStatusEnum {
+  /** 认证状态，0：未认证 1：认证中 2：认证通过 3：认证驳回 */
+  UnAuth = 0,
+  Authing = 1,
+  Authed = 2,
+  AuthReject = 3,
+}

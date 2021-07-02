@@ -1,15 +1,14 @@
+/* eslint-disable no-underscore-dangle */
 import type { Settings as LayoutSettings } from '@ant-design/pro-layout';
 import { PageLoading } from '@ant-design/pro-layout';
 import { notification } from 'antd';
 import type { RequestConfig, RunTimeLayoutConfig } from 'umi';
-import { history } from 'umi';
 import 'amis/lib/themes/default.css';
-import { queryCurrentUser } from '@/services/account';
-import type { IAccount, IMasterState } from '@/types/type';
-import { setMasterStateConfig } from '@/utils/storage';
+import type { IMasterState } from '@/types/type';
 import PackageJson from '../package.json';
-
-const loginPath = '/user/login';
+import type { IAccount } from '@/types/type';
+import type { IMasterStateConfig } from '@/types/type';
+import { getBaseConfig } from '@/utils/utils';
 
 export function modifyClientRenderOpts(memo: any) {
   return {
@@ -17,7 +16,6 @@ export function modifyClientRenderOpts(memo: any) {
     // @ts-ignore
     // eslint-disable-next-line no-underscore-dangle
     rootElement: window.__POWERED_BY_QIANKUN__ ? 'mircoContainer' : memo.rootElement,
-    // rootElement: window.__POWERED_BY_QIANKUN__ ? PackageJson.name : memo.rootElement,
   };
 }
 
@@ -31,33 +29,24 @@ export const initialStateConfig = {
  * */
 export async function getInitialState(): Promise<{
   settings?: Partial<LayoutSettings>;
-  currentUser?: IAccount;
-  fetchUserInfo?: () => Promise<IAccount | undefined>;
+  currentUser?: IAccount | null;
+  masterState: IMasterStateConfig;
 }> {
-  const fetchUserInfo = async () => {
-    try {
-      const currentUser = await queryCurrentUser();
-      return currentUser;
-    } catch (error) {
-      notification.error({
-        description: '获取用户信息失败',
-        message: '错误提示',
-      });
-    }
-    return undefined;
-  };
-  // 如果是登录页面，不执行
-  if (history.location.pathname !== loginPath) {
-    const currentUser = await fetchUserInfo();
+  // @ts-ignore
+  if (window.__POWERED_BY_QIANKUN__) {
     return {
-      fetchUserInfo,
-      currentUser,
       settings: {},
+      // @ts-ignore
+      masterState: window._CONSOLE_,
+      // @ts-ignore
+      currentUser: window._CONSOLE_?.account,
     };
   }
+  const basicConfig = await getBaseConfig();
   return {
-    fetchUserInfo,
     settings: {},
+    masterState: basicConfig,
+    currentUser: basicConfig?.account,
   };
 }
 
@@ -112,8 +101,12 @@ export const qiankun = {
     console.log(`${PackageJson.name} mount`, props);
     props.onGlobalStateChange((state: IMasterState, prevState: IMasterState) => {
       console.log('通信状态发生改变：', state, prevState);
-      // eslint-disable-next-line no-underscore-dangle
-      setMasterStateConfig(state._CONSOLE_);
+      // setMasterStateConfig(state._CONSOLE_);
+      // @ts-ignore
+      if (!window._CONSOLE_) {
+        // @ts-ignore
+        window._CONSOLE_ = state._CONSOLE_;
+      }
     }, true);
   },
   // 应用卸载之后触发

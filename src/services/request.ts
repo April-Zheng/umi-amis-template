@@ -1,9 +1,23 @@
 // @ts-ignore
 // import { request } from "umi";
+import { getPassportHost } from '@/utils/host';
 import { extend } from 'umi-request';
 // import { message } from 'antd';
 
-const Prefix = 'http://localhost:8000';
+export const BasicURL = 'http://localhost:8000';
+
+export const CosBasicURL =
+  process.env.NODE_ENV === "development"
+    ? ""
+    : `http://imgcache.t1.t-beplant.bmdigitech.com`;
+
+/**
+ * 是否登录态有问题 true 有问题 false 不是登录态问题
+ * @param {*} code
+ */
+ export const isLoginFail = (code: number) => {
+  return [9001, 9002, 40003].indexOf(code) !== -1;
+};
 
 // @ts-ignore
 const errorHandler = (error) => {
@@ -31,7 +45,7 @@ const errorHandler = (error) => {
 };
 
 const request = extend({
-  prefix: Prefix,
+  prefix: BasicURL,
   timeout: 10000,
   headers: {
     'Content-Type': 'application/json',
@@ -49,6 +63,9 @@ request.interceptors.response.use(async (response: any, options: any) => {
   // if (data.Code !== 0) {
   //   message.error(data.message || '请求失败，请重试！');
   // }
+  if (isLoginFail(data.Code)) {
+    getPassportHost();
+  }
   return response;
 });
 
