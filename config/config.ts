@@ -10,7 +10,7 @@ import PackageJson from '../package.json';
 const { REACT_APP_ENV } = process.env;
 
 export default defineConfig({
-  base:PackageJson.name,
+  base: PackageJson.name,
   qiankun: {
     slave: {},
   },
@@ -70,4 +70,5 @@ export default defineConfig({
       projectName: 'swagger',
     },
   ],
+  publicPath: process.env.NODE_ENV === 'production' ? './' : '/',
 });
