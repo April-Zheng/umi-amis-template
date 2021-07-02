@@ -1,7 +1,7 @@
 import React, { useCallback } from 'react';
 import { LogoutOutlined, SettingOutlined, UserOutlined } from '@ant-design/icons';
 import { Avatar, Menu, Spin } from 'antd';
-import {  useModel } from 'umi';
+import { useModel } from 'umi';
 import { outlogin } from '@/services/account';
 import HeaderDropdown from '../HeaderDropdown';
 import styles from './index.less';
@@ -32,7 +32,6 @@ const AvatarDropdown: React.FC<GlobalHeaderRightProps> = ({ menu }) => {
       if (key === 'logout' && initialState) {
         setInitialState({ ...initialState, currentUser: undefined });
         loginOut();
-        return;
       }
     },
     [initialState, setInitialState],
@@ -61,7 +60,7 @@ const AvatarDropdown: React.FC<GlobalHeaderRightProps> = ({ menu }) => {
   }
 
   const menuHeaderDropdown = (
-    //@ts-ignore
+    // @ts-ignore
     <Menu className={styles.menu} selectedKeys={[]} onClick={onMenuClick}>
       {menu && (
         <Menu.Item key="center">

@@ -1,7 +1,20 @@
 .accountContainer {
   display: flex;
+  :global {
+    .ant-descriptions-row {
+      display: flex;
+      flex-direction: column;
+      .ant-descriptions-item-label {
+        color: rgba(0, 0, 0, 0.4);
+      }
+    }
+  }
   .left {
+    max-width: 370px;
+    padding-right: 20px;
+    border-right: 1px solid #e5e5e5;
   }
   .right {
+    padding-left: 20px;
   }
 }
