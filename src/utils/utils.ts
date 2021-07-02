@@ -25,7 +25,7 @@ export const isAntDesignProOrDev = (): boolean => {
   return isAntDesignPro();
 };
 
-const setWindowConfig = (val: Record<string, unknown>) => {
+export const setWindowConfig = (val: Record<string, unknown>) => {
   // @ts-ignore
   const consoleConf = window._CONSOLE_ || {};
   const config = {

@@ -1,7 +1,16 @@
-import type { IAccountResponse } from '@/types/type';
+import type { IAccountResponse, IBasicResponse } from '@/types/type';
 import { request } from './request';
 
-/** 获取当前的用户 GET /api/currentUser */
+/** 退出登录 */
+export async function logout(options?: Record<string, any>) {
+  return request<IBasicResponse>('/iam/api/v1/logout', {
+    // FIXME
+    method: 'GET',
+    ...(options || {}),
+  });
+}
+
+/** 获取当前的用户 */
 export async function queryCurrentUser(options?: Record<string, any>) {
   return request<IAccountResponse>('/iam/api/v1/account', {
     method: 'GET',

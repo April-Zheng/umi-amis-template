@@ -54,7 +54,7 @@
     "@umijs/plugin-qiankun": "^2.25.2",
     "@umijs/route-utils": "^1.0.36",
     "amis": "^1.2.0-beta.3",
-    "antd": "^4.14.0",
+    "antd": "^4.16.6",
     "classnames": "^2.2.6",
     "lodash": "^4.17.11",
     "moment": "^2.25.3",
@@ -96,6 +96,8 @@
     "lint-staged": "^10.0.0",
     "mockjs": "^1.0.1-beta3",
     "prettier": "^2.0.1",
+    "eslint-config-prettier": "^8.3.0",
+    "eslint-plugin-prettier": "^3.4.0",
     "puppeteer-core": "^8.0.0",
     "stylelint": "^13.0.0",
     "typescript": "^4.2.2"

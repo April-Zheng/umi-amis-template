@@ -1,8 +1,8 @@
 import { useModel } from 'umi';
-import { Card, Descriptions, Empty } from 'antd';
+import { Card, Empty, Descriptions } from 'antd';
 import { PageContainer } from '@ant-design/pro-layout';
-import styles from './index.less';
 import { AccountAuthStatusMap, AccountTypeValueMap } from '@/types/enumValueMap';
+import styles from './index.less';
 
 export default function AccountInfo() {
   const { initialState } = useModel('@@initialState');

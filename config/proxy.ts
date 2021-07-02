@@ -5,6 +5,7 @@
  * For details, please see
  * https://pro.ant.design/docs/deploy
  */
+// TODO url上是console开头的 代理要改成console的后端接口。
 const proxyhost =  `http://sp.test.beplant.digibms.com`;
 // const proxyhost =  `http://cosnole.test.beplant.digibms.com`;
 const cosProxy = 'http://imgcache.t1.t-beplant.bmdigitech.com';

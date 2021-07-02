@@ -8,7 +8,7 @@ import type { IMasterState } from '@/types/type';
 import PackageJson from '../package.json';
 import type { IAccount } from '@/types/type';
 import type { IMasterStateConfig } from '@/types/type';
-import { getBaseConfig } from '@/utils/utils';
+import { getBaseConfig, setWindowConfig } from '@/utils/utils';
 
 export function modifyClientRenderOpts(memo: any) {
   return {
@@ -67,6 +67,12 @@ export const request: RequestConfig = {
     throw error;
   },
 };
+
+// @ts-ignore
+export function onRouteChange({ location }) {
+  const paltform = location.pathname.indexOf('console') >= 0 ? 'console' : 'sp';
+  setWindowConfig({ paltform });
+}
 
 // ProLayout 支持的api https://procomponents.ant.design/components/layout
 export const layout: RunTimeLayoutConfig = ({ initialState }) => {
