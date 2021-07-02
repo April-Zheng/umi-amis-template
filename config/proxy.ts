@@ -9,7 +9,7 @@
 const proxyhost =  `http://sp.test.beplant.digibms.com`;
 // const proxyhost =  `http://cosnole.test.beplant.digibms.com`;
 const cosProxy = 'http://imgcache.t1.t-beplant.bmdigitech.com';
-const sp_access_token = 'OGIXMMZJNTQTZGYWZC0ZYTQ1LTG3NTITZDA1N2I4MTE3ZMI2';
+const sp_access_token = 'NTZHMDFLMJGTMDUWMS0ZOGFMLWFJNZYTNGNHODM3YMNMY2M4';
 
 export default {
   dev: {

@@ -2,9 +2,8 @@ import type { IAccountResponse, IBasicResponse } from '@/types/type';
 import { request } from './request';
 
 /** 退出登录 */
-export async function logout(options?: Record<string, any>) {
+export async function outlogin(options?: Record<string, any>) {
   return request<IBasicResponse>('/iam/api/v1/logout', {
-    // FIXME
     method: 'GET',
     ...(options || {}),
   });

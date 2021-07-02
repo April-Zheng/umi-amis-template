@@ -9,6 +9,7 @@ import PackageJson from '../package.json';
 import type { IAccount } from '@/types/type';
 import type { IMasterStateConfig } from '@/types/type';
 import { getBaseConfig, setWindowConfig } from '@/utils/utils';
+import RightContent from '@/components/RightContent';
 
 export function modifyClientRenderOpts(memo: any) {
   return {
@@ -93,6 +94,7 @@ export const layout: RunTimeLayoutConfig = ({ initialState }) => {
     waterMarkProps: {
       content: '',
     },
+    rightContentRender: () => <RightContent></RightContent>,
     ...initialState?.settings,
   };
 };
