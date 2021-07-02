@@ -1,7 +1,8 @@
 /* eslint-disable no-param-reassign */
-import { request } from 'umi';
+import { request, history } from 'umi';
 import { notification } from 'antd';
 import { render as renderAmis } from 'amis';
+import copy from 'copy-to-clipboard';
 import type { fetcherResult } from '_amis@1.2.0-beta.3@amis/lib/types';
 
 const amisRequest = async (url: string, options: any) => {
@@ -80,34 +81,37 @@ export const renderReactAmis = (jsonConfig: any) => {
       },
       // isCancel: (value: any) => (axios as any).isCancel(value),
       copy: (content) => {
-        // copy(content);
-        notification.error({
-          description: content,
-          message: '复制错误 系统方法未实现',
-        });
+        copy(content);
+        notification.success({ message: '内容已复制到粘贴板' });
       },
       // 后面这些接口可以不用实现
 
       // 默认是地址跳转
-      // jumpTo: (
-      //   location: string /*目标地址*/,
-      //   action: any /* action对象*/
-      // ) => {
-      //   // 用来实现页面跳转, actionType:link、url 都会进来。
-      // },
+      jumpTo: (location: string /* 目标地址 */, action: any /* action对象 */) => {
+        console.log(action);
+        // 用来实现页面跳转, actionType:link、url 都会进来。
+        history.push(location);
+      },
 
-      // updateLocation: (
-      //   location: string /*目标地址*/,
-      //   replace: boolean /*是replace，还是push？*/
-      // ) => {
-      //   // 地址替换，跟 jumpTo 类似
-      // },
+      updateLocation: (
+        location: string /* 目标地址 */,
+        replace: boolean /* 是replace，还是push？ */,
+      ) => {
+        // 地址替换，跟 jumpTo 类似
+        if (replace) {
+          history.replace(location);
+        } else {
+          history.push(location);
+        }
+      },
 
-      // isCurrentUrl: (
-      //   url: string /*url地址*/,
-      // ) => {
-      //   // 用来判断是否目标地址当前地址
-      // },
+      isCurrentUrl: (url: string /* url地址 */) => {
+        // 用来判断是否目标地址当前地址
+        if (url === `${history.location.pathname}${history.location.search}`) {
+          return true;
+        }
+        return false;
+      },
 
       // notify: (
       //   type: 'error' | 'success' /**/,
